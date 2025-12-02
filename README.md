@@ -1,6 +1,6 @@
 # Advent of Code 2025 - Day 1 - Parts 1 and 2 (COMPLETED)
 
-This repository contains my solutions for Day 1 of the Advent of Code 2025 challenge, implemented in C#. The problem description is available on the [Advent of Code website](https://adventofcode.com/2025/day/1).
+This repository contains my solution for Day 1 of the Advent of Code 2025 challenge, implemented in C#. The problem description is available on the [Advent of Code website](https://adventofcode.com/2025/day/1).
 
 ## Solution Overview
 
