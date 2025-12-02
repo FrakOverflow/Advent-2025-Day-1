@@ -2,15 +2,11 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Diagnostics;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
 
     /// <summary>
     /// Static class for decoding dial rotations into password counts
     /// </summary>
-    internal class Decoder
+    internal static class Decoder
     {
         /// <summary>
         /// Modulus for the dial calculations (number of positons on the dial)
@@ -23,13 +19,11 @@
         /// <param name="origin">Dial starting position</param>
         /// <param name="rotations">List of rotation codes</param>
         /// <returns>Integer indicating the number of times the dial pointed at 0</returns>
-        public static int Decode(int origin, IEnumerable<string> rotations)
+        internal static int Decode(int origin, IEnumerable<string> rotations)
         {
             Console.WriteLine($"Origin Position = {origin}");
             var position = origin;
             var password = 0;
-
-            // Increment count if starting position is 0
 
             // Complete each rotation in sequence, counting each time the dial points to 0
             foreach (var rotation in rotations)
@@ -40,9 +34,14 @@
 
                 // Count each full rotation as a pass over 0
                 var clicks = GetRealRotation(rotation);
-                var fullTurns = clicks / MODULUS;
-                var remainingClicks = clicks % MODULUS; // C# modulo here because we want true remainder, not modulus
                 var destination = AddMod(position, clicks, MODULUS);
+
+                // Calculate full turns and add it to the password count
+                var fullTurns = clicks / MODULUS;
+                password += Math.Abs(fullTurns);
+
+                // Calculate remaining clicks after full turns
+                var remainingClicks = clicks % MODULUS; // C# modulo here because we want true remainder, not modulus
 
                 Console.WriteLine($"Rotation = {rotation}");
                 Console.WriteLine($"Clicks = {clicks}");
@@ -50,8 +49,6 @@
                 Console.WriteLine($"Full Turns = {fullTurns}");
                 Console.WriteLine($"Remaining Clicks = {remainingClicks}");
 
-                // Each full turn passes over 0 once
-                password += Math.Abs(fullTurns);
 
                 // If we pass over 0 in the remaining clicks, but did not start at 0, count an extra pass
                 // (if we started at 0 in this iteration, it was already counted in the previous)

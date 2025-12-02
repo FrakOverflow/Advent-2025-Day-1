@@ -1,11 +1,14 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Advent Of Code 2025");
+﻿Console.WriteLine("Advent Of Code 2025");
 Console.WriteLine("--- Day 1: Secret Entrance ---");
 
+// Input file paths
 var inputPath = "PuzzleInput.txt";
 var testPath = "testInput.txt";
-var bigTestPath = "bigRotationTest.txt";
+var bigTestPath = "bigRotationTest.txt"; 
+
+// Initial dial position
 var dialPosition = 50;
+
 Console.WriteLine($"Initial Dial Position = {dialPosition}");
 
 try
